@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    
+</head>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+button{
+    background-color: rgb(255, 174, 0);
+    border-radius: 5px;
+    border: none;
+}
+.game-container {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: white;
+}
+
+input {
+    padding: 10px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#feedback {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+</style>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess the number between 1 and 1000</p>
+        <input type="number" id="guessInput" placeholder="Enter your guess">
+        <button onclick="checkGuess()">Guess</button>
+        <button onclick="restartGame()">Restart</button>
+        <p id="feedback"></p>
+        <p>Attempts: <span id="attempts">0</span></p>
+    </div>
+    <script>
+        let randomNumber = Math.floor(Math.random() * 1000) + 1;
+let attempts = 0;
+
+function checkGuess() {
+    const guess = document.getElementById("guessInput").value;
+    attempts++;
+    document.getElementById("attempts").innerText = attempts;
+
+    if (guess == randomNumber) {
+        document.getElementById("feedback").innerText = "Congratulations! You've guessed the right number!";
+    } else if (guess < randomNumber) {
+        document.getElementById("feedback").innerText = "Too low! Try again.";
+    } else {
+        document.getElementById("feedback").innerText = "Too high! Try again.";
+    }
+}
+
+function restartGame() {
+    // Generate a new random number
+    randomNumber = Math.floor(Math.random() * 1000) + 1;
+    attempts = 0;
+    
+    // Reset feedback and attempts
+    document.getElementById("feedback").innerText = "";
+    document.getElementById("attempts").innerText = attempts;
+    
+    // Clear the input field
+    document.getElementById("guessInput").value = "";
+}
+
+    </script>
+</body>
+</html>
